@@ -2,18 +2,21 @@
 
 set -ue
 
-ACTIVE=$(cat /mnt/c/Projects/nginx-bg/active) 
+CURRENT_ACTIVE=$(cat /mnt/c/Projects/nginx-bg/active) 
 
-if [[ ${ACTIVE} == "blue" ]]; then
-  SWAP=green
-elif [[ ${ACTIVE} = "green" ]]; then
-  SWAP=blue
+if [ ${CURRENT_ACTIVE} = "blue" ]; then
+  LIVE=green
+  STAGE=blue
+elif [ ${CURRENT_ACTIVE} = "green" ]; then
+  LIVE=blue
+  STAGE=green
 else
   echo ERROR: Failed to recognize ACTIVE instance.
   echo Verify that \"active\" configuration exists and that the configuration is either \"blue\"" or \"green\"".
   exit 1
 fi
 
-ln -sf /etc/nginx/sites-available/${SWAP} /etc/nginx/sites-enabled/client
-echo ${SWAP} > /mnt/c/Projects/nginx-bg/active
+ln -sf /etc/nginx/sites-available/${LIVE}-live /etc/nginx/sites-enabled/client-live
+ln -sf /etc/nginx/sites-available/${STAGE}-stage /etc/nginx/sites-enabled/client-stage
+echo ${LIVE} > /mnt/c/Projects/nginx-bg/active
 service nginx restart
