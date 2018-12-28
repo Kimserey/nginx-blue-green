@@ -1,0 +1,10 @@
+server {
+	listen 8080 default_server;
+	listen [::]:8080 default_server;
+
+	root /mnt/c/Projects/nginx-bg/blue;
+
+	location / {
+		try_files $uri /index.html;
+	}
+}
