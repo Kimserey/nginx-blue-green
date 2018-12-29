@@ -2,7 +2,7 @@ server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	root /mnt/c/Projects/nginx-bg/blue;
+	root /usr/share/nginx-test;
 
 	location / {
 		try_files $uri /index.html;

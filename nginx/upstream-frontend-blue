@@ -1,0 +1,3 @@
+upstream frontend {
+    server localhost:5500;
+}
