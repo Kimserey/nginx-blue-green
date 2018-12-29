@@ -2,7 +2,7 @@ server {
 	listen 5500 default_server;
 	listen [::]:5500 default_server;
 
-	root /mnt/c/Projects/nginx-bg/blue/;
+	root /mnt/c/Projects/nginx-bg/Frontend/blue;
   
   location / {
     try_files $uri /index.html;
